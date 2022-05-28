@@ -1,5 +1,5 @@
-### Live demo: work in progress
-git ad
+### Live demo: soon
+
 #### Tech stack & libraries used
 React.js
 SCSS
