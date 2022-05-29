@@ -1,4 +1,59 @@
 .wordle {
   display: flex;
   flex-direction: column;
+
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    .row {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+
+      .square {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-transform: uppercase;
+        font-size: 1.25rem;
+        font-weight: 500;
+        width: 60px;
+        height: 60px;
+        border-radius: 7px;
+        background-color: #323232;
+
+        &:hover {
+          background-color: #232323;
+        }
+      }
+    }
+
+    .past {
+      .square {
+        border-bottom: 2px solid;
+        &:hover {
+          background-color: none;
+        }
+      }
+
+      .gray {
+        background-color: rgba(110, 110, 110, 0.25);
+        border-color: #a1a1a1;
+      }
+
+      .yellow {
+        background-color: rgba(255, 238, 0, 0.25);
+        border-color: #e2cc68;
+      }
+
+      .green {
+        background-color: rgba(50, 180, 10, 0.25);
+        border-color: #5ac85a;
+      }
+    }
+  }
 }
+
+/* animations */
