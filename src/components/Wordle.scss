@@ -1,6 +1,7 @@
 .wordle {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   .grid {
     display: flex;
@@ -30,9 +31,16 @@
       }
     }
 
+    .current {
+      .filled {
+        animation: bounce 0.2s ease-in-out forwards;
+      }
+    }
+
     .past {
       .square {
         border-bottom: 3px solid;
+        border-color: #121212;
 
         &:hover {
           background-color: none;
@@ -58,20 +66,41 @@
       .gray {
         --background-color: rgba(110, 110, 110, 0.25);
         --border-color: #414141;
+        --color: #aaa;
         animation: flip 0.5s ease forwards;
       }
 
       .yellow {
         --background-color: rgba(255, 238, 0, 0.25);
         --border-color: #e2cc68;
+        // --color: yellow;
         animation: flip 0.5s ease forwards;
       }
 
       .green {
         --background-color: rgba(50, 180, 10, 0.25);
         --border-color: #5ac85a;
+        // --color: limegreen;
         animation: flip 0.5s ease forwards;
       }
+    }
+  }
+
+  .keypad {
+    max-width: 400px;
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+
+    .letter {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 50px;
+      background-color: #232323;
+      border-radius: 10px;
     }
   }
 }
@@ -81,22 +110,38 @@
   0% {
     transform: rotateY(0);
     background-color: #323232;
+    border-color: #121212;
   }
 
   45% {
     transform: rotateY(90deg);
     background-color: #323232;
+    border-color: #121212;
   }
 
   55% {
     transform: rotateY(90deg);
     background: var(--background-color);
     border-color: var(--border-color);
+    color: var(--color);
   }
 
   100% {
     transform: rotateY(0);
     background: var(--background-color);
     border-color: var(--border-color);
+    color: var(--color);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
   }
 }

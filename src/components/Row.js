@@ -1,9 +1,6 @@
 import React from "react";
 
 const Row = ({ guess, currentGuess }) => {
-  console.log(`GUESS BELOW`);
-  console.log(guess);
-
   if (guess) {
     return (
       <div className="row past">

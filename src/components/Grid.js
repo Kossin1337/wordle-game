@@ -2,7 +2,6 @@ import React from "react";
 import Row from "./Row";
 
 const Grid = ({ guesses, currentGuess, turn }) => {
-  console.log(guesses);
   return (
     <div className="grid">
       {guesses.map((guess, index) => {

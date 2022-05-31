@@ -8,6 +8,7 @@ export const useWordle = (solution) => {
   ]); /* array of formatted guesses */
   const [history, setHistory] = useState([]); /* string history */
   const [isCorrect, setIsCorrect] = useState(false);
+  const [usedKeys, setUsedKeys] = useState({}); // {a: 'green', b: 'yellow', c: 'greflamey'}
 
   /* formatting a guess into an array of letter objects -> [{key: 'a', color: 'yellow'}] */
   const formatGuess = () => {
@@ -48,6 +49,20 @@ export const useWordle = (solution) => {
 
     setTurn((prevTurn) => {
       return prevTurn + 1;
+    });
+
+    /* working on keyboard colors */
+    setUsedKeys((prevKeys) => {
+      console.log(currentGuess);
+      const guessLetters = [...currentGuess];
+      console.log(guessLetters);
+
+      guessLetters.map((letter, index) => {
+        console.log(letter);
+
+      });
+
+
     });
 
     setCurrentGuess("");
