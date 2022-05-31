@@ -20,7 +20,6 @@ const Wordle = ({ solution }) => {
   return (
     <div className="wordle">
       <span>Current guess: {currentGuess}</span>
-      <span>wordle</span>
       <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} />
     </div>
   );
