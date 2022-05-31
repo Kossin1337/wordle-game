@@ -55,14 +55,15 @@ export const useWordle = (solution) => {
     setUsedKeys((prevKeys) => {
       console.log(currentGuess);
       const guessLetters = [...currentGuess];
+      const solutionLetters = [...solution];
+      console.log(`solution: ${solution}`);
+      console.log(`solutionLetters: ${solutionLetters}`);
       console.log(guessLetters);
 
       guessLetters.map((letter, index) => {
-        console.log(letter);
-
+        if (solutionLetters.includes(letter)) {
+        }
       });
-
-
     });
 
     setCurrentGuess("");
@@ -105,5 +106,5 @@ export const useWordle = (solution) => {
     }
   };
 
-  return { turn, currentGuess, guesses, isCorrect, handleKeyUp };
+  return { turn, currentGuess, guesses, isCorrect, handleKeyUp, usedKeys };
 };

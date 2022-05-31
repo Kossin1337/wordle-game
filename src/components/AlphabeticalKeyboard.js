@@ -29,7 +29,7 @@ const lettersArray = [
   { key: "z" },
 ];
 
-const Keypad = () => {
+const AlphabeticalKeyboard = ({ usedKeys}) => {
   const [letters, setLetters] = useState(lettersArray);
 
   return (
@@ -45,4 +45,4 @@ const Keypad = () => {
   );
 };
 
-export default Keypad;
+export default AlphabeticalKeyboard;

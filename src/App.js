@@ -18,7 +18,6 @@ const App = () => {
 
   return (
     <div className="application">
-      <h1>Solution: {solution}</h1>
       {solution && <Wordle solution={solution} />}
     </div>
   );

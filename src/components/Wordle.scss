@@ -1,106 +1,191 @@
 .wordle {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 
-  .grid {
+  .navigation {
+    width: 100%;
+    padding: 0.25rem 0;
     display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #414141;
 
-    .row {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-
-      .square {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-transform: uppercase;
-        font-size: 1.25rem;
-        font-weight: 500;
-        width: 60px;
-        height: 60px;
-        border-radius: 7px;
-        background-color: #323232;
-
-        &:hover {
-          background-color: #232323;
-        }
-      }
+    .title {
+      font-size: 1.25rem;
     }
 
-    .current {
-      .filled {
-        animation: bounce 0.2s ease-in-out forwards;
-      }
-    }
+    .icon-box {
+      cursor: pointer;
+      display: grid;
+      place-content: center;
 
-    .past {
-      .square {
-        border-bottom: 3px solid;
-        border-color: #121212;
+      svg {
+        width: 25px;
+        height: 25px;
+        color: #fff;
 
         &:hover {
-          background-color: none;
+          color: #ccc;
         }
-      }
-
-      .square:nth-child(2) {
-        animation-delay: 0.4s;
-      }
-
-      .square:nth-child(3) {
-        animation-delay: 0.8s;
-      }
-
-      .square:nth-child(4) {
-        animation-delay: 1.2s;
-      }
-
-      .square:nth-child(5) {
-        animation-delay: 1.6s;
-      }
-
-      .gray {
-        --background-color: rgba(110, 110, 110, 0.25);
-        --border-color: #414141;
-        --color: #aaa;
-        animation: flip 0.5s ease forwards;
-      }
-
-      .yellow {
-        --background-color: rgba(255, 238, 0, 0.25);
-        --border-color: #e2cc68;
-        // --color: yellow;
-        animation: flip 0.5s ease forwards;
-      }
-
-      .green {
-        --background-color: rgba(50, 180, 10, 0.25);
-        --border-color: #5ac85a;
-        // --color: limegreen;
-        animation: flip 0.5s ease forwards;
       }
     }
   }
 
-  .keypad {
-    max-width: 400px;
-    margin-top: 1rem;
+  .game {
+    height: 100%;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem 0;
 
-    .letter {
+    .grid {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 30px;
-      height: 50px;
-      background-color: #232323;
-      border-radius: 10px;
+      flex-direction: column;
+      gap: 1rem;
+
+      .row {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+
+        .square {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-transform: uppercase;
+          font-size: 1.25rem;
+          font-weight: 500;
+          width: 60px;
+          height: 60px;
+          border-radius: 10px;
+          background-color: #313131;
+
+          &:hover {
+            background-color: #232323;
+          }
+        }
+      }
+
+      .current {
+        .filled {
+          animation: bounce 0.2s ease-in-out forwards;
+        }
+      }
+
+      .past {
+        .square {
+          border-bottom: 3px solid;
+          border-color: #121212;
+
+          &:hover {
+            background-color: none;
+          }
+        }
+
+        .square:nth-child(2) {
+          animation-delay: 0.4s;
+        }
+
+        .square:nth-child(3) {
+          animation-delay: 0.8s;
+        }
+
+        .square:nth-child(4) {
+          animation-delay: 1.2s;
+        }
+
+        .square:nth-child(5) {
+          animation-delay: 1.6s;
+        }
+
+        .gray {
+          --background-color: rgba(110, 110, 110, 0.25);
+          --border-color: #414141;
+          --color: #aaa;
+          animation: flip 0.5s ease forwards;
+        }
+
+        .yellow {
+          --background-color: rgba(255, 238, 0, 0.25);
+          --border-color: #e2cc68;
+          // --color: yellow;
+          animation: flip 0.5s ease forwards;
+        }
+
+        .green {
+          --background-color: rgba(50, 180, 10, 0.25);
+          --border-color: #5ac85a;
+          // --color: limegreen;
+          animation: flip 0.5s ease forwards;
+        }
+      }
+    }
+
+    .keypad {
+      max-width: 400px;
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+
+      .letter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 50px;
+        background-color: #232323;
+        border-radius: 10px;
+      }
+    }
+
+    .advanced-keyboard {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      gap: 0.5rem;
+      // background-color: #767676;
+
+      .row {
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: 0.25rem;
+
+        .box {
+          height: 50px;
+          width: 30px;
+          display: grid;
+          place-content: center;
+          background-color: #434343;
+          border-radius: 5px;
+
+          &:hover {
+            background-color: #232323;
+          }
+        }
+
+        .action {
+          width: 47px;
+
+          svg {
+            width: 25px;
+            height: 25px;
+            // height: 80%;
+            color: #fff;
+          }
+        }
+
+        .backspace {
+          // background-color: rgba(163, 0, 0, 0.25);
+          background-color: rgba(255, 238, 0, 0.25);
+        }
+
+        .enter {
+          background-color: rgba(52, 228, 8, 0.25);
+        }
+      }
     }
   }
 }

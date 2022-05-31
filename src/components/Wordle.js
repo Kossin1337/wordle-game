@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
 import { useWordle } from "../hooks/useWordle";
+import Navigation from "./Navigation";
 import Grid from "./Grid";
-import Keypad from "./Keypad";
+import AlphabeticalKeyboard from "./AlphabeticalKeyboard";
+import AdvancedKeyboard from "./AdvancedKeyboard";
+
 import "./Wordle.scss";
 
 const Wordle = ({ solution }) => {
-  const { turn, currentGuess, guesses, isCorrect, handleKeyUp } =
+  const { turn, currentGuess, guesses, isCorrect, handleKeyUp, usedKeys } =
     useWordle(solution);
 
   useEffect(() => {
@@ -14,15 +17,23 @@ const Wordle = ({ solution }) => {
     return () => window.removeEventListener("keyup", handleKeyUp);
   }, [handleKeyUp]);
 
-  // useEffect(() => {
-  //   console.log(guesses, turn, isCorrect);
-  // }, [guesses, turn, isCorrect]);
+  useEffect(() => {
+    console.log(
+      `Solution: ${solution}`,
+      guesses,
+      `Turn: ${turn}`,
+      `End-game: ${isCorrect}`
+    );
+  }, [guesses, turn, isCorrect]);
 
   return (
     <div className="wordle">
-      <span>Current guess: {currentGuess}</span>
-      <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} />
-      <Keypad />
+      <Navigation />
+      <div className="game">
+        <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} />
+        {/* <AlphabeticalKeyboard usedKeys={usedKeys} /> */}
+        <AdvancedKeyboard usedKeys={usedKeys} />
+      </div>
     </div>
   );
 };
