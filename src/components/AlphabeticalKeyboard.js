@@ -29,14 +29,16 @@ const lettersArray = [
   { key: "z" },
 ];
 
-const AlphabeticalKeyboard = ({ usedKeys}) => {
+const AlphabeticalKeyboard = ({ usedKeys }) => {
   const [letters, setLetters] = useState(lettersArray);
 
   return (
     <div className="keypad">
       {letters.map((letter) => {
+        const color = usedKeys[letter.key];
+
         return (
-          <div className="letter" key={letter.key}>
+          <div className={`letter ${color}`} key={letter.key}>
             {letter.key}
           </div>
         );

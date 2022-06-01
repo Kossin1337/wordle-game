@@ -12,7 +12,10 @@
     border-bottom: 1px solid #414141;
 
     .title {
+      font-family: "Permanent Marker";
       font-size: 1.25rem;
+      margin: 0;
+      padding: 0;
     }
 
     .icon-box {
@@ -21,12 +24,12 @@
       place-content: center;
 
       svg {
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
         color: #fff;
 
         &:hover {
-          color: #ccc;
+          color: #ddd;
         }
       }
     }
@@ -83,6 +86,27 @@
           }
         }
 
+        .green {
+          --background-color: rgba(50, 180, 10, 0.25);
+          --border-color: #5ac85a;
+          // --color: limegreen;
+          animation: flip 0.5s ease forwards;
+        }
+
+        .yellow {
+          --background-color: rgba(255, 238, 0, 0.25);
+          --border-color: #e2cc68;
+          // --color: yellow;
+          animation: flip 0.5s ease forwards;
+        }
+
+        .grey {
+          --background-color: rgba(110, 110, 110, 0.25);
+          --border-color: #414141;
+          --color: #aaa;
+          animation: flip 0.5s ease forwards;
+        }
+
         .square:nth-child(2) {
           animation-delay: 0.4s;
         }
@@ -98,30 +122,10 @@
         .square:nth-child(5) {
           animation-delay: 1.6s;
         }
-
-        .gray {
-          --background-color: rgba(110, 110, 110, 0.25);
-          --border-color: #414141;
-          --color: #aaa;
-          animation: flip 0.5s ease forwards;
-        }
-
-        .yellow {
-          --background-color: rgba(255, 238, 0, 0.25);
-          --border-color: #e2cc68;
-          // --color: yellow;
-          animation: flip 0.5s ease forwards;
-        }
-
-        .green {
-          --background-color: rgba(50, 180, 10, 0.25);
-          --border-color: #5ac85a;
-          // --color: limegreen;
-          animation: flip 0.5s ease forwards;
-        }
       }
     }
 
+    /* alphabetical keyboard */
     .keypad {
       max-width: 400px;
       margin-top: 1rem;
@@ -136,10 +140,28 @@
         width: 30px;
         height: 50px;
         background-color: #232323;
+        color: #fff;
         border-radius: 10px;
+        transition: all 0.3s ease-in;
+      }
+
+      .green {
+        background-color: rgba(50, 180, 10, 0.5);
+        border-color: #5ac85a;
+      }
+
+      .yellow {
+        background-color: rgba(255, 238, 0, 0.5);
+        border-color: #e2cc68;
+      }
+
+      .grey {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-color: #000000;
       }
     }
 
+    /* Advanced (normal) keyboard */
     .advanced-keyboard {
       display: grid;
       grid-template-rows: repeat(3, 1fr);
@@ -153,7 +175,7 @@
         justify-content: center;
         gap: 0.25rem;
 
-        .box {
+        .key {
           height: 50px;
           width: 30px;
           display: grid;
@@ -168,22 +190,23 @@
 
         .action {
           width: 47px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
           svg {
             width: 25px;
             height: 25px;
-            // height: 80%;
             color: #fff;
           }
         }
 
         .backspace {
-          // background-color: rgba(163, 0, 0, 0.25);
-          background-color: rgba(255, 238, 0, 0.25);
+          background-color: rgba(255, 238, 0, 0.5);
         }
 
         .enter {
-          background-color: rgba(52, 228, 8, 0.25);
+          background-color: rgba(52, 228, 8, 0.5);
         }
       }
     }

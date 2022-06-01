@@ -4,63 +4,63 @@ const AdvancedKeyboard = ({ usedKeys }) => {
   return (
     <div className="advanced-keyboard">
       <div className="row">
-        <div className="box">Q</div>
-        <div className="box">W</div>
-        <div className="box">E</div>
-        <div className="box">R</div>
-        <div className="box">T</div>
-        <div className="box">Y</div>
-        <div className="box">I</div>
-        <div className="box">O</div>
-        <div className="box">P</div>
-        <div className="box">U</div>
+        <div className="key">Q</div>
+        <div className="key">W</div>
+        <div className="key">E</div>
+        <div className="key">R</div>
+        <div className="key">T</div>
+        <div className="key">Y</div>
+        <div className="key">I</div>
+        <div className="key">O</div>
+        <div className="key">P</div>
+        <div className="key">U</div>
       </div>
       <div className="row">
-        <div className="box">A</div>
-        <div className="box">S</div>
-        <div className="box">D</div>
-        <div className="box">F</div>
-        <div className="box">G</div>
-        <div className="box">H</div>
-        <div className="box">J</div>
-        <div className="box">K</div>
-        <div className="box">L</div>
+        <div className="key">A</div>
+        <div className="key">S</div>
+        <div className="key">D</div>
+        <div className="key">F</div>
+        <div className="key">G</div>
+        <div className="key">H</div>
+        <div className="key">J</div>
+        <div className="key">K</div>
+        <div className="key">L</div>
       </div>
       <div className="row">
-        <div className="box action enter">
+        <div className="key action enter">
           <svg
-            class="w-6 h-6"
+            className="w-6 h-6 enter-svg"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M5 13l4 4L19 7"
             ></path>
           </svg>
         </div>
-        <div className="box">Z</div>
-        <div className="box">X</div>
-        <div className="box">C</div>
-        <div className="box">V</div>
-        <div className="box">B</div>
-        <div className="box">N</div>
-        <div className="box">M</div>
-        <div className="box action backspace">
+        <div className="key">Z</div>
+        <div className="key">X</div>
+        <div className="key">C</div>
+        <div className="key">V</div>
+        <div className="key">B</div>
+        <div className="key">N</div>
+        <div className="key">M</div>
+        <div className="key action backspace">
           <svg
-            class="w-6 h-6"
+            className="w-6 h-6 backspace-svg"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             ></path>
           </svg>
         </div>

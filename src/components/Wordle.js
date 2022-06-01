@@ -8,7 +8,7 @@ import AdvancedKeyboard from "./AdvancedKeyboard";
 import "./Wordle.scss";
 
 const Wordle = ({ solution }) => {
-  const { turn, currentGuess, guesses, isCorrect, handleKeyUp, usedKeys } =
+  const { turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyUp } =
     useWordle(solution);
 
   useEffect(() => {

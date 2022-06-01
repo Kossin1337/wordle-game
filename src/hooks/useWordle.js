@@ -15,14 +15,14 @@ export const useWordle = (solution) => {
     const formattedArray = [];
 
     for (let i = 0; i < currentGuess.length; i++) {
-      let color; /* green  yellow  gray  */
+      let color; /* green  yellow  grey  */
 
       if (currentGuess[i] === solution[i]) {
         color = "green"; // correct position
       } else if (solution.includes(currentGuess[i])) {
         color = "yellow"; // wrong position (is in a word)
       } else {
-        color = "gray"; // wrong guess (not in a word)
+        color = "grey"; // wrong guess (not in a word)
       }
 
       formattedArray.push({ key: currentGuess[i], color: color });
@@ -52,18 +52,45 @@ export const useWordle = (solution) => {
     });
 
     /* working on keyboard colors */
-    setUsedKeys((prevKeys) => {
-      console.log(currentGuess);
-      const guessLetters = [...currentGuess];
-      const solutionLetters = [...solution];
-      console.log(`solution: ${solution}`);
-      console.log(`solutionLetters: ${solutionLetters}`);
-      console.log(guessLetters);
+    setUsedKeys((prevUsedKeys) => {
+      let newKeys = { ...prevUsedKeys };
+      console.log(newKeys);
 
-      guessLetters.map((letter, index) => {
-        if (solutionLetters.includes(letter)) {
+      formattedGuess.forEach((l) => {
+        const currentColor = newKeys[l.key];
+
+        /* l.key -> is a letter like a, b, c || l.color is a color asigned to a letter */
+        /* if the property exists we are overriding a prev value */
+        if (l.color === "green") {
+          newKeys[l.key] = "green";
+          return;
+        }
+
+        if (l.color === "yellow" && currentColor !== "green") {
+          newKeys[l.key] = "yellow";
+          return;
+        }
+
+        if (l.color === "grey" && currentColor !== ("green" || "yellow")) {
+          newKeys[l.key] = "grey";
+          return;
         }
       });
+
+      return newKeys;
+
+      // console.log(currentGuess);
+      // const guessLetters = [...currentGuess];
+      // const solutionLetters = [...solution];
+      // console.log(`solution: ${solution}`);
+      // console.log(`solutionLetters: ${solutionLetters}`);
+      // console.log(guessLetters);
+
+      // guessLetters.map((letter, index) => {
+      //   if (solutionLetters.includes(letter)) {
+      //     usedKeys[letter].color = "green";
+      //   }
+      // });
     });
 
     setCurrentGuess("");
@@ -106,5 +133,5 @@ export const useWordle = (solution) => {
     }
   };
 
-  return { turn, currentGuess, guesses, isCorrect, handleKeyUp, usedKeys };
+  return { turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyUp  };
 };
