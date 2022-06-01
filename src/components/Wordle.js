@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useWordle } from "../hooks/useWordle";
 import Navigation from "./Navigation";
 import Grid from "./Grid";
-import AlphabeticalKeyboard from "./AlphabeticalKeyboard";
-import AdvancedKeyboard from "./AdvancedKeyboard";
+import AlphabeticalKeyboard from "./keyboards/AlphabeticalKeyboard";
+import AdvancedKeyboard from "./keyboards/AdvancedKeyboard";
 
 import "./Wordle.scss";
 

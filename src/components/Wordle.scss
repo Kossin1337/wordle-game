@@ -188,6 +188,22 @@
           }
         }
 
+        .green {
+          background-color: rgba(50, 180, 10, 0.5);
+          border-color: #5ac85a;
+        }
+
+        .yellow {
+          background-color: rgba(255, 238, 0, 0.5);
+          border-color: #e2cc68;
+        }
+
+        .grey {
+          background-color: rgba(0, 0, 0, 0.5);
+          border-color: #000000;
+          color: #aaa;
+        }
+
         .action {
           width: 47px;
           display: flex;
@@ -195,9 +211,17 @@
           align-items: center;
 
           svg {
+            color: #fff;
+          }
+
+          .enter-svg {
             width: 25px;
             height: 25px;
-            color: #fff;
+          }
+
+          .backspace-svg {
+            width: 20px;
+            height: 20px;
           }
         }
 
