@@ -14,17 +14,27 @@ const Wordle = ({ solution }) => {
   useEffect(() => {
     window.addEventListener("keyup", handleKeyUp);
 
-    return () => window.removeEventListener("keyup", handleKeyUp);
-  }, [handleKeyUp]);
+    if (isCorrect) {
+      console.log(`Congrats, you win!`);
+      window.removeEventListener("keyup", handleKeyUp);
+    }
 
-  useEffect(() => {
-    console.log(
-      `Solution: ${solution}`,
-      guesses,
-      `Turn: ${turn}`,
-      `End-game: ${isCorrect}`
-    );
-  }, [guesses, turn, isCorrect]);
+    if (turn > 5) {
+      console.log(`GAME-OVER, OUT OF GUESSES`);
+      window.removeEventListener("keyup", handleKeyUp);
+    }
+
+    return () => window.removeEventListener("keyup", handleKeyUp);
+  }, [handleKeyUp, isCorrect, turn]);
+
+  // useEffect(() => {
+  //   console.log(
+  //     `Solution: ${solution}`,
+  //     guesses,
+  //     `Turn: ${turn}`,
+  //     `End-game: ${isCorrect}`
+  //   );
+  // }, [guesses, turn, isCorrect]);
 
   return (
     <div className="wordle">
