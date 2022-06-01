@@ -1,14 +1,14 @@
 import { useState } from "react";
 
 export const useWordle = (solution) => {
-  const [turn, setTurn] = useState(0);
-  const [currentGuess, setCurrentGuess] = useState("");
+  const [turn, setTurn] = useState(0); /* 1 to 6 */
+  const [currentGuess, setCurrentGuess] = useState(""); /* string guess */
   const [guesses, setGuesses] = useState([
     ...Array(6),
   ]); /* array of formatted guesses */
-  const [history, setHistory] = useState([]); /* string history */
-  const [isCorrect, setIsCorrect] = useState(false);
-  const [usedKeys, setUsedKeys] = useState({}); // {a: 'green', b: 'yellow', c: 'greflamey'}
+  const [history, setHistory] = useState([]); /* string words history */
+  const [isCorrect, setIsCorrect] = useState(false); /* game finish logic */
+  const [usedKeys, setUsedKeys] = useState({}); // {a: 'green', b: 'yellow', c: 'greflamey'} 
 
   /* formatting a guess into an array of letter objects -> [{key: 'a', color: 'yellow'}] */
   const formatGuess = () => {
@@ -78,19 +78,6 @@ export const useWordle = (solution) => {
       });
 
       return newKeys;
-
-      // console.log(currentGuess);
-      // const guessLetters = [...currentGuess];
-      // const solutionLetters = [...solution];
-      // console.log(`solution: ${solution}`);
-      // console.log(`solutionLetters: ${solutionLetters}`);
-      // console.log(guessLetters);
-
-      // guessLetters.map((letter, index) => {
-      //   if (solutionLetters.includes(letter)) {
-      //     usedKeys[letter].color = "green";
-      //   }
-      // });
     });
 
     setCurrentGuess("");
@@ -133,5 +120,5 @@ export const useWordle = (solution) => {
     }
   };
 
-  return { turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyUp  };
+  return { turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyUp };
 };
