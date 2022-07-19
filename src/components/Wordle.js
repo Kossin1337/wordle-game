@@ -8,8 +8,7 @@ import Modal from "./modal/Modal";
 import "./Wordle.scss";
 
 const Wordle = ({ solution }) => {
-  const { turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyUp } =
-    useWordle(solution);
+  const { turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyUp } = useWordle(solution);
   const [showModal, setShowModal] = useState(true);
 
   useEffect(() => {
@@ -39,12 +38,7 @@ const Wordle = ({ solution }) => {
         <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} />
         <AdvancedKeyboard usedKeys={usedKeys} />
         {showModal && (
-          <Modal
-            closeModal={() => setShowModal(false)}
-            isCorrect={isCorrect}
-            turn={turn}
-            solution={solution}
-          />
+          <Modal closeModal={() => setShowModal(false)} isCorrect={isCorrect} turn={turn} solution={solution} />
         )}
       </div>
     </div>

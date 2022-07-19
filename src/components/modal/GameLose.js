@@ -1,9 +1,11 @@
 import React from "react";
 
-const GameLose = () => {
+const GameLose = ({ solution }) => {
   return (
-    <div>
-      <span>You lost :CC</span>
+    <div className="lose">
+      <span className="title">You lost :CC</span>
+      <span className="info">Correct Solution</span>
+      <span className="solution">{solution}</span>
     </div>
   );
 };
