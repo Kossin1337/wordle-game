@@ -3,7 +3,7 @@ import GameWin from "./GameWin";
 import GameLose from "./GameLose";
 import "./Modal.scss";
 
-const Modal = ({ isCorrect, turn, solution }) => {
+const Modal = ({ closeModal, isCorrect, turn, solution }) => {
   return (
     <div className="modal">
       {isCorrect ? <GameWin turn={turn} /> : <GameLose solution={solution} />}
