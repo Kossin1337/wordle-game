@@ -1,0 +1,123 @@
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(2px);
+  background: rgba(35, 35, 35, 0.25);
+  display: grid;
+  place-items: center;
+
+  .modal {
+    min-width: 320px;
+    display: flex;
+    height: 320px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: rgba(15, 15, 15, 0.5);
+    border-radius: 25px;
+
+    .lose {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .title {
+        margin-bottom: 2rem;
+        font-size: 2rem;
+        font-weight: 300;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .info-text {
+          font-weight: 200;
+          text-transform: uppercase;
+        }
+
+        .solution {
+          margin-top: 0.5rem;
+          margin-bottom: 1rem;
+          font-weight: 500;
+          text-transform: uppercase;
+          font-size: 2.5rem;
+          color: orange;
+        }
+      }
+    }
+
+    .win {
+      position: relative;
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+
+      .title {
+        font-size: 2rem;
+        font-weight: 300;
+      }
+
+      .solution {
+        position: absolute;
+        top: 5.15rem;
+        font-size: 72px;
+        font-weight: 200;
+        text-transform: uppercase;
+        opacity: 0.2;
+        color: limegreen;
+      }
+
+      .column {
+        margin-top: 2rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+
+        .turn-count {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    .restart {
+      width: 100%;
+      cursor: pointer;
+      padding: 0.5rem 0;
+      border: none;
+      outline: none;
+      border-radius: 20px;
+      background-color: rgba(125, 125, 125, 0.25);
+      transition: all 0.15s ease-in;
+
+      &:hover {
+        background-color: #252525;
+        transform: scale(0.95);
+
+        .text {
+          color: limegreen;
+          font-weight: 300;
+        }
+      }
+
+      .text {
+        font-family: "Poppins";
+        color: #fefefe;
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 200;
+        transition: all 0.15s ease-in;
+      }
+    }
+  }
+}

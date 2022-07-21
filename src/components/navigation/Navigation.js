@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { Settings } from "../modal/settings/Settings";
+import { Statistics } from "../modal/statistics/Statistics";
 
-const Navigation = () => {
+const Navigation = ({ history }) => {
   const [openSettings, setOpenSettings] = useState(false);
   const [openStats, setOpenStats] = useState(false);
 
   return (
     <div className="navigation">
-      <div className="icon-box stats">
+      <div className="icon-box stats" onClick={() => setOpenStats(true)}>
         <svg
           className="w-6 h-6"
           fill="currentColor"
@@ -17,7 +19,7 @@ const Navigation = () => {
         </svg>
       </div>
       <span className="title">LEET#</span>
-      <div className="icon-box settings">
+      <div className="icon-box settings" onClick={() => setOpenSettings(true)}>
         <svg
           className="w-6 h-6"
           fill="currentColor"
@@ -31,6 +33,10 @@ const Navigation = () => {
           ></path>
         </svg>
       </div>
+      {openSettings && <Settings closeModal={() => setOpenSettings(false)} />}
+      {openStats && (
+        <Statistics closeModal={() => setOpenStats(false)} history={history} />
+      )}
     </div>
   );
 };

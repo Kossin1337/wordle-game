@@ -1,22 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { useWordle } from "../hooks/useWordle";
-import Navigation from "./Navigation";
+import Navigation from "./navigation/Navigation";
 import Grid from "./Grid";
 import AdvancedKeyboard from "./keyboards/AdvancedKeyboard";
-import Modal from "./modal/Modal";
+import ResultsModal from "./modal/game-results/ResultsModal";
 
 import "./Wordle.scss";
 
-const Wordle = ({ solution }) => {
-  const { turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyUp } = useWordle(solution);
+const Wordle = ({ solution, generateNewSolution }) => {
+  const {
+    turn,
+    currentGuess,
+    guesses,
+    isCorrect,
+    usedKeys,
+    gamesHistory,
+    gameFinished,
+    setGameFinished,
+    handleKeyUp,
+    restartGame,
+  } = useWordle(solution);
   const [showModal, setShowModal] = useState(true);
+
+  const playAgain = async () => {
+    console.log("* Play Again function fired");
+    await generateNewSolution();
+    await restartGame();
+    console.log("* Play Again function ended");
+  };
 
   useEffect(() => {
     window.addEventListener("keyup", handleKeyUp);
 
-    if (isCorrect) {
+    if (isCorrect && gameFinished) {
       setTimeout(() => {
         setShowModal(true);
+        setGameFinished(true);
       }, 2000);
       window.removeEventListener("keyup", handleKeyUp);
     }
@@ -24,6 +43,7 @@ const Wordle = ({ solution }) => {
     if (turn > 5) {
       setTimeout(() => {
         setShowModal(true);
+        setGameFinished(true);
       }, 2000);
       window.removeEventListener("keyup", handleKeyUp);
     }
@@ -33,12 +53,19 @@ const Wordle = ({ solution }) => {
 
   return (
     <div className="wordle">
-      <Navigation />
+      <Navigation history={gamesHistory} />
       <div className="game">
         <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} />
-        <AdvancedKeyboard usedKeys={usedKeys} />
-        {showModal && (
-          <Modal closeModal={() => setShowModal(false)} isCorrect={isCorrect} turn={turn} solution={solution} />
+        <AdvancedKeyboard usedKeys={usedKeys} checkWord={handleKeyUp} />
+        {showModal && gameFinished && (
+          <ResultsModal
+            closeModal={() => setShowModal(false)}
+            isCorrect={isCorrect}
+            turn={turn}
+            solution={solution}
+            playAgain={playAgain}
+            gameFinished={gameFinished}
+          />
         )}
       </div>
     </div>

@@ -1,8 +1,12 @@
 import React from "react";
 
 const Backspace = () => {
+  const undoCharacter = () => {
+    console.log('current characters: ')
+  }
+
   return (
-    <div className="key action backspace">
+    <div className="key action backspace" onClick={undoCharacter}>
       <svg
         className="w-6 h-6 backspace-svg"
         fill="currentColor"

@@ -7,8 +7,12 @@ export const useWordle = (solution) => {
     ...Array(6),
   ]); /* array of formatted guesses */
   const [history, setHistory] = useState([]); /* string words history */
+  const [gamesHistory, setGamesHistory] = useState(
+    []
+  ); /* History for all games */
   const [isCorrect, setIsCorrect] = useState(false); /* game finish logic */
-  const [usedKeys, setUsedKeys] = useState({}); // {a: 'green', b: 'yellow', c: 'greflamey'} 
+  const [usedKeys, setUsedKeys] = useState({}); // {a: 'green', b: 'yellow', c: 'greflamey'}
+  const [gameFinished, setGameFinished] = useState(false);
 
   /* formatting a guess into an array of letter objects -> [{key: 'a', color: 'yellow'}] */
   const formatGuess = () => {
@@ -37,6 +41,7 @@ export const useWordle = (solution) => {
   const addNewGuess = (formattedGuess) => {
     if (currentGuess === solution) {
       setIsCorrect(true);
+      setGameFinished(true);
     }
 
     setGuesses((prevGuesses) => {
@@ -120,5 +125,44 @@ export const useWordle = (solution) => {
     }
   };
 
-  return { turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyUp };
+  /* Save Game */
+  const saveGameStats = () => {
+    const gameHistory = {
+      gameID: history.length,
+      time: Date.now(),
+      win: isCorrect,
+      turns: turn,
+    };
+
+    setGamesHistory((prevHistory) => [gameHistory, ...prevHistory]);
+  };
+
+  /* Restart Game Logic */
+  const restartGame = () => {
+    console.log("** Restart Game Function Fired");
+    saveGameStats();
+
+    /* Reseting all parameters for next game */
+    setTurn(0);
+    setCurrentGuess("");
+    setHistory([]);
+    setGuesses([...Array(6)]);
+    setUsedKeys({});
+    setIsCorrect(false);
+    setGameFinished(false);
+    console.log("** Restart Game Function Ended");
+  };
+
+  return {
+    turn,
+    currentGuess,
+    guesses,
+    isCorrect,
+    usedKeys,
+    gamesHistory,
+    gameFinished,
+    setGameFinished,
+    handleKeyUp,
+    restartGame,
+  };
 };

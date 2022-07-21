@@ -4,8 +4,10 @@ const GameLose = ({ solution }) => {
   return (
     <div className="lose">
       <span className="title">YOU LOST</span>
-      <span className="info">Correct Solution</span>
-      <span className="solution">{solution}</span>
+      <div className="info">
+        <span className="info-text">Correct Solution</span>
+        <span className="solution">{solution}</span>
+      </div>
     </div>
   );
 };

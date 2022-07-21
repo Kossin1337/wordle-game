@@ -5,15 +5,18 @@
 
   .navigation {
     width: 100%;
-    padding: 0.25rem 0;
+    padding: 0.5rem 0.25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #414141;
 
     .title {
-      font-family: "Permanent Marker";
-      font-size: 1.25rem;
+      font-family: "Poppins";
+      font-size: 1.75rem;
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 2px;
       margin: 0;
       padding: 0;
     }
@@ -24,12 +27,13 @@
       place-content: center;
 
       svg {
-        width: 20px;
-        height: 20px;
-        color: #fff;
+        width: 32px;
+        height: 32px;
+        color: #ccc;
+        transition: all 0.15s ease-in;
 
         &:hover {
-          color: #ddd;
+          color: #fff;
         }
       }
     }
@@ -176,12 +180,14 @@
         gap: 0.25rem;
 
         .key {
+          cursor: pointer;
           height: 50px;
           width: 30px;
           display: grid;
           place-content: center;
           background-color: #434343;
           border-radius: 5px;
+          transition: all 0.05s ease-in;
 
           &:hover {
             background-color: #232323;
@@ -191,24 +197,38 @@
         .green {
           background-color: rgba(50, 180, 10, 0.5);
           border-color: #5ac85a;
+
+          &:hover {
+            background-color: rgba(50, 180, 10, 0.75);
+          }
         }
 
         .yellow {
           background-color: rgba(255, 238, 0, 0.5);
           border-color: #e2cc68;
+
+          &:hover {
+            background-color: rgba(255, 238, 0, 0.75);
+          }
         }
 
         .grey {
           background-color: rgba(0, 0, 0, 0.5);
           border-color: #000000;
           color: #aaa;
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.75);
+          }
         }
 
         .action {
+          cursor: pointer;
           width: 47px;
           display: flex;
           justify-content: center;
           align-items: center;
+          transition: all 0.1s ease-in;
 
           svg {
             color: #fff;
@@ -227,10 +247,18 @@
 
         .backspace {
           background-color: rgba(255, 238, 0, 0.5);
+
+          &:hover {
+            background-color: rgba(255, 238, 0, 0.75);
+          }
         }
 
         .enter {
           background-color: rgba(52, 228, 8, 0.5);
+
+          &:hover {
+            background-color: rgba(52, 228, 8, 0.75);
+          }
         }
       }
     }
