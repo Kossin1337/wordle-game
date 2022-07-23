@@ -2,14 +2,18 @@
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100vw;
   height: 100vh;
   backdrop-filter: blur(2px);
   background: rgba(35, 35, 35, 0.25);
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .modal {
+    position: relative;
     min-width: 320px;
     display: flex;
     height: 320px;
