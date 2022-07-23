@@ -8,9 +8,9 @@ const keyboard = [
   ["enter", "z", "x", "c", "v", "b", "n", "m", "backspace"],
 ];
 
-const AdvancedKeyboard = ({ usedKeys, checkWord }) => {
-  const handleKeyPress = (e) => {
-    console.log(e.target.value);
+const AdvancedKeyboard = ({ usedKeys, handleKey }) => {
+  const handleKeyPress = ({ target }) => {
+    handleKey({ key: target.innerText });
   };
 
   return (
@@ -20,8 +20,9 @@ const AdvancedKeyboard = ({ usedKeys, checkWord }) => {
           <div className="row" key={index}>
             {row.map((key) => {
               if (key === "enter")
-                return <Enter key={key} checkWord={checkWord} />;
-              if (key === "backspace") return <Backspace key={key} />;
+                return <Enter key={key} handleKey={handleKey} />;
+              if (key === "backspace")
+                return <Backspace key={key} handleKey={handleKey} />;
 
               const color = usedKeys[key];
               return (

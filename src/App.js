@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import { words } from "./data/words.js";
 import Wordle from "./components/Wordle";
 import "./App.scss";
 
+const gameInfoContext = createContext();
+
 const App = () => {
   const [solution, setSolution] = useState(null);
-
 
   const generateWord = () => {
     const newWordsIndex = Math.floor(Math.random() * words.length);

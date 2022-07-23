@@ -135,6 +135,9 @@ export const useWordle = (solution) => {
     };
 
     setGamesHistory((prevHistory) => [gameHistory, ...prevHistory]);
+
+    /* save to local storage */
+    localStorage.setItem("gameHistory", gamesHistory);
   };
 
   /* Restart Game Logic */
@@ -150,6 +153,7 @@ export const useWordle = (solution) => {
     setUsedKeys({});
     setIsCorrect(false);
     setGameFinished(false);
+    window.removeEventListener("keyup", handleKeyUp);
     console.log("** Restart Game Function Ended");
   };
 

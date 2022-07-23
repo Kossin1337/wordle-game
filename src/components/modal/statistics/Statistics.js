@@ -3,16 +3,21 @@ import { Modal } from "../Modal";
 import "./Statistics.scss";
 
 export const Statistics = ({ closeModal, history }) => {
-  const totalGames = history.length;
-  const gamesData = {
-    wins: 0,
-    loses: 0,
-    turns: {},
-  };
-  history?.map((game) => {
-    game.win ? gamesData.wins++ : gamesData.loses++;
-    
-  });
+  // const totalGames = history.length;
+  // const gamesData = {
+  //   wins: 0,
+  //   loses: 0,
+  //   turns: {},
+  // };
+  // history?.map((game) => {
+  //   game.win ? gamesData.wins++ : gamesData.loses++;
+  // });
+
+  const data = localStorage.getItem("gameHistory");
+  // const data = localStorage.gameHistory;
+  console.log("data: ", data);
+  console.log("localStorage", localStorage);
+
   return (
     <Modal closeModal={closeModal}>
       <div className="stats content">

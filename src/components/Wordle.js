@@ -20,27 +20,20 @@ const Wordle = ({ solution, generateNewSolution }) => {
     handleKeyUp,
     restartGame,
   } = useWordle(solution);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const playAgain = async () => {
     console.log("* Play Again function fired");
     await generateNewSolution();
     await restartGame();
+    setShowModal(false);
     console.log("* Play Again function ended");
   };
 
   useEffect(() => {
     window.addEventListener("keyup", handleKeyUp);
 
-    if (isCorrect && gameFinished) {
-      setTimeout(() => {
-        setShowModal(true);
-        setGameFinished(true);
-      }, 2000);
-      window.removeEventListener("keyup", handleKeyUp);
-    }
-
-    if (turn > 5) {
+    if (isCorrect || turn > 5) {
       setTimeout(() => {
         setShowModal(true);
         setGameFinished(true);
@@ -49,15 +42,15 @@ const Wordle = ({ solution, generateNewSolution }) => {
     }
 
     return () => window.removeEventListener("keyup", handleKeyUp);
-  }, [handleKeyUp, isCorrect, turn]);
+  }, [handleKeyUp, isCorrect, setGameFinished, turn]);
 
   return (
     <div className="wordle">
       <Navigation history={gamesHistory} />
       <div className="game">
         <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} />
-        <AdvancedKeyboard usedKeys={usedKeys} checkWord={handleKeyUp} />
-        {showModal && gameFinished && (
+        <AdvancedKeyboard usedKeys={usedKeys} handleKey={handleKeyUp} />
+        {gameFinished && showModal && (
           <ResultsModal
             closeModal={() => setShowModal(false)}
             isCorrect={isCorrect}

@@ -1,10 +1,10 @@
 import React from "react";
 
-const Enter = ({ checkWord }) => {
+const Enter = ({ handleKey }) => {
   return (
     <div
       className="key action enter"
-      onClick={() => checkWord({ key: "Enter" })}
+      onClick={() => handleKey({ key: "Enter" })}
     >
       <svg
         className="w-6 h-6 enter-svg"

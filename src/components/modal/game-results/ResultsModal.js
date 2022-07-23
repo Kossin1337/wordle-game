@@ -14,14 +14,17 @@ const ResultsModal = ({
 }) => {
   return (
     <div className="wrapper" onClick={closeModal}>
-      <div className="modal">
-        {isCorrect ? (
-          <GameWin turn={turn} solution={solution} />
-        ) : (
-          <GameLose solution={solution} />
-        )}
-        <PlayAgainButton playAgain={playAgain} />
-      </div>
+      {gameFinished && (
+        <div className="modal">
+          {isCorrect ? (
+            <GameWin turn={turn} solution={solution} />
+          ) : (
+            <GameLose solution={solution} />
+          )}
+
+          <PlayAgainButton playAgain={playAgain} />
+        </div>
+      )}
     </div>
   );
 };

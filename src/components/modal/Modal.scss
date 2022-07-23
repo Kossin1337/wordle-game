@@ -10,6 +10,9 @@
   place-items: center;
 
   .modal {
+    position: absolute;
+    z-index: 999;
+    // pointer-events: none;
     min-width: 320px;
     height: 400px;
     display: flex;
@@ -20,6 +23,7 @@
     border-radius: 25px;
 
     .content {
+      height: 100%;
       .title {
         text-transform: uppercase;
         font-weight: 300;
