@@ -4,6 +4,7 @@ import Navigation from "./navigation/Navigation";
 import Grid from "./Grid";
 import AdvancedKeyboard from "./keyboards/AdvancedKeyboard";
 import ResultsModal from "./modal/game-results/ResultsModal";
+import { Tutorial } from "./modal/tutorial/Tutorial";
 
 import "./Wordle.scss";
 
@@ -21,11 +22,14 @@ const Wordle = ({ solution, generateNewSolution }) => {
     restartGame,
   } = useWordle(solution);
   const [showModal, setShowModal] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(
+    localStorage.getItem("leet_showTutorial")
+  );
 
-  const playAgain = async () => {
+  const playAgain = () => {
     console.log("* Play Again function fired");
-    await generateNewSolution();
-    await restartGame();
+    generateNewSolution();
+    restartGame();
     setShowModal(false);
     console.log("* Play Again function ended");
   };
@@ -61,6 +65,9 @@ const Wordle = ({ solution, generateNewSolution }) => {
           />
         )}
       </div>
+      {showTutorial && (
+        <Tutorial closeTutorial={() => setShowTutorial(false)} />
+      )}
     </div>
   );
 };

@@ -3,15 +3,15 @@ import { Modal } from "../Modal";
 import "./Statistics.scss";
 
 export const Statistics = ({ closeModal, history }) => {
-  // const totalGames = history.length;
-  // const gamesData = {
-  //   wins: 0,
-  //   loses: 0,
-  //   turns: {},
-  // };
-  // history?.map((game) => {
-  //   game.win ? gamesData.wins++ : gamesData.loses++;
-  // });
+  const totalGames = history.length;
+  const gamesData = {
+    wins: 0,
+    loses: 0,
+    turns: {},
+  };
+  history?.map((game) => {
+    game.win ? gamesData.wins++ : gamesData.loses++;
+  });
 
   const data = localStorage.getItem("gameHistory");
   // const data = localStorage.gameHistory;
@@ -24,6 +24,10 @@ export const Statistics = ({ closeModal, history }) => {
         <span className="title">Statistics</span>
         <span className="info">Development in progress</span>
         <div className="history">{JSON.stringify(history)}</div>
+        <span>WINS {gamesData.wins}</span>
+        <span>LOSES {gamesData.loses}</span>
+        <span>WIN RATE {(gamesData.wins / history.length) * 100}%</span>
+        {/* <span>AVG TURNS PER GAME {gamesData}</span> */}
       </div>
     </Modal>
   );

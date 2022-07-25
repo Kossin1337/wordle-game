@@ -1,0 +1,119 @@
+.tutorial {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: 200;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+
+  .row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .tile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      font-size: 1.25rem;
+      font-weight: 500;
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      background-color: #313131;
+      border-bottom: 3px solid;
+
+      .letter {
+        font-family: "Poppins";
+        font-size: 1.75rem;
+        font-weight: 500;
+        font-style: italic;
+        letter-spacing: 2px;
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    .info {
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+
+    .grey {
+      background-color: rgba(110, 110, 110, 0.25);
+      border-color: #414141;
+    }
+
+    .yellow {
+      background-color: rgba(255, 238, 0, 0.25);
+      border-color: #e2cc68;
+    }
+
+    .green {
+      background-color: rgba(50, 180, 10, 0.25);
+      border-color: #5ac85a;
+    }
+  }
+
+  .close {
+    width: 100%;
+    margin-top: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    background-color: rgba(125, 125, 125, 0.25);
+    transition: all 0.15s ease-in;
+
+    &:hover {
+      background-color: #252525;
+      transform: scale(0.95);
+
+      .text {
+        color: yellow;
+      }
+    }
+
+    .text {
+      font-family: "Poppins";
+      color: #fefefe;
+      text-transform: uppercase;
+      font-size: 20px;
+      font-weight: 200;
+      transition: all 0.15s ease-in;
+    }
+  }
+
+  .hideTutorial {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    #checkbox {
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      background-color: #ccc;
+      color: yellow;
+      outline: none;
+      border: none;
+    }
+
+    label {
+      color: #ccc;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+  }
+}

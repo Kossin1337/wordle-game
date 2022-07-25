@@ -137,7 +137,7 @@ export const useWordle = (solution) => {
     setGamesHistory((prevHistory) => [gameHistory, ...prevHistory]);
 
     /* save to local storage */
-    localStorage.setItem("gameHistory", gamesHistory);
+    localStorage.setItem("gameHistory", [...gamesHistory]);
   };
 
   /* Restart Game Logic */
@@ -145,6 +145,7 @@ export const useWordle = (solution) => {
     console.log("** Restart Game Function Fired");
     saveGameStats();
 
+    console.log("*** reseting parameters:");
     /* Reseting all parameters for next game */
     setTurn(0);
     setCurrentGuess("");
@@ -153,7 +154,11 @@ export const useWordle = (solution) => {
     setUsedKeys({});
     setIsCorrect(false);
     setGameFinished(false);
-    window.removeEventListener("keyup", handleKeyUp);
+    // window.removeEventListener("keyup", handleKeyUp);
+    console.log("gameFinished: ", gameFinished);
+    console.log("Turns: ", turn);
+    console.log("History: ", history);
+    console.log("*** reseting finished:");
     console.log("** Restart Game Function Ended");
   };
 

@@ -16,17 +16,6 @@ const App = () => {
     return newWord;
   };
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3001/solutions")
-  //     .then((response) => response.json())
-  //     .then((jsonData) => {
-  //       /* random int between 0 -> jsonData.length - 1 */
-  //       const randomSolution =
-  //         jsonData[Math.floor(Math.random() * jsonData.length)];
-  //       setSolution(randomSolution.word);
-  //     });
-  // }, [setSolution]);
-
   useEffect(() => {
     generateNewSolution();
   }, [setSolution]);
