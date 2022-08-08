@@ -3,13 +3,9 @@ import { useState } from "react";
 export const useWordle = (solution) => {
   const [turn, setTurn] = useState(0); /* 1 to 6 */
   const [currentGuess, setCurrentGuess] = useState(""); /* string guess */
-  const [guesses, setGuesses] = useState([
-    ...Array(6),
-  ]); /* array of formatted guesses */
+  const [guesses, setGuesses] = useState([...Array(6)]); /* array of formatted guesses */
   const [history, setHistory] = useState([]); /* string words history */
-  const [gamesHistory, setGamesHistory] = useState(
-    []
-  ); /* History for all games */
+  const [gamesHistory, setGamesHistory] = useState([]); /* History for all games */
   const [isCorrect, setIsCorrect] = useState(false); /* game finish logic */
   const [usedKeys, setUsedKeys] = useState({}); // {a: 'green', b: 'yellow', c: 'greflamey'}
   const [gameFinished, setGameFinished] = useState(false);
@@ -59,7 +55,7 @@ export const useWordle = (solution) => {
     /* working on keyboard colors */
     setUsedKeys((prevUsedKeys) => {
       let newKeys = { ...prevUsedKeys };
-      console.log(newKeys);
+      // console.log(newKeys);
 
       formattedGuess.forEach((l) => {
         const currentColor = newKeys[l.key];

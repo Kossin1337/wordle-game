@@ -3,16 +3,20 @@ import "./Tutorial.scss";
 import { Modal } from "../Modal";
 
 export const Tutorial = ({ showTutorial, closeTutorial }) => {
-  const [checkbox, setCheckbox] = useState(
-    localStorage.getItem("leet_tutorialDisabled") || false
-  );
+  const [checkbox, setCheckbox] = useState(true);
 
   const hideTutorial = () => {
     /* save it to local storage */
-    if (checkbox) localStorage.setItem("leet_tutorialDisabled", true);
+    if (checkbox) localStorage.setItem("leet_showTutorial", false);
+    console.log(
+      "Tutorial > hideTutorial > localStorage(leet_showTutorial):",
+      localStorage.getItem("leet_showTutorial")
+    );
 
     closeTutorial();
   };
+
+  console.log("Current state of tutorial: ", showTutorial);
 
   const handleCheckbox = () => {
     setCheckbox(!checkbox);
@@ -44,13 +48,7 @@ export const Tutorial = ({ showTutorial, closeTutorial }) => {
           <span className="text">Hide tutorial</span>
         </button>
         <div className="hideTutorial">
-          <input
-            type="checkbox"
-            id="checkbox"
-            name="tutorial-checkbox"
-            value={checkbox}
-            onChange={handleCheckbox}
-          />
+          <input type="checkbox" id="checkbox" name="tutorial-checkbox" value={checkbox} onChange={handleCheckbox} />
           <label htmlFor="checkbox">I get it. Disable the hints</label>
         </div>
       </div>

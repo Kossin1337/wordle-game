@@ -22,16 +22,14 @@ const Wordle = ({ solution, generateNewSolution }) => {
     restartGame,
   } = useWordle(solution);
   const [showModal, setShowModal] = useState(false);
-  const [showTutorial, setShowTutorial] = useState(
-    localStorage.getItem("leet_showTutorial")
-  );
+  const [showTutorial, setShowTutorial] = useState(localStorage.getItem("leet_showTutorial") || false);
 
   const playAgain = () => {
-    console.log("* Play Again function fired");
+    // console.log("* Play Again function fired");
     generateNewSolution();
-    restartGame();
     setShowModal(false);
-    console.log("* Play Again function ended");
+    restartGame();
+    // console.log("* Play Again function ended");
   };
 
   useEffect(() => {
@@ -65,9 +63,7 @@ const Wordle = ({ solution, generateNewSolution }) => {
           />
         )}
       </div>
-      {showTutorial && (
-        <Tutorial closeTutorial={() => setShowTutorial(false)} />
-      )}
+      {showTutorial && <Tutorial closeTutorial={() => setShowTutorial(false)} />}
     </div>
   );
 };
