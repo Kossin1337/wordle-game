@@ -2,6 +2,7 @@
 
 #### Tech stack & libraries used
 React.js
+Typescript
 SCSS
 JSON Server (will be probably swapped for another solution)
 
