@@ -3,10 +3,21 @@ import { words } from "./data/words.js";
 import Wordle from "./components/Wordle";
 import "./App.scss";
 
-const gameInfoContext = createContext();
+// interface GameInfo {
+//   totalGames: number;
+//   wins: number;
+// }
+
+// const gameContextMock = {
+//   totalGames: 100,
+//   wins: 60,
+//   gamesHistory: [{ id: 1, time: 1665067467592, win: false, turns: [] }],
+// };
+
+// const gameInfoContext = createContext(gameContextMock);
 
 const App = () => {
-  const [solution, setSolution] = useState(null);
+  const [solution, setSolution] = useState<string | null>(null);
 
   const generateWord = () => {
     const newWordsIndex = Math.floor(Math.random() * words.length);
