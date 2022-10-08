@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useWordle } from "../hooks/useWordle";
+import { Tutorial } from "./modal/tutorial/Tutorial";
 import Navigation from "./navigation/Navigation";
 import Grid from "./Grid";
-import AdvancedKeyboard from "./keyboards/AdvancedKeyboard";
+import Keyboard from "./keyboards/Keyboard";
 import ResultsModal from "./modal/game-results/ResultsModal";
-import { Tutorial } from "./modal/tutorial/Tutorial";
 
 import "./Wordle.scss";
 
-const Wordle = ({ solution, generateNewSolution }) => {
+interface IWordle {
+  solution: string;
+  generateNewSolution: () => void;
+}
+
+const Wordle = ({ solution, generateNewSolution }: IWordle) => {
   const {
     turn,
     currentGuess,
@@ -22,14 +27,14 @@ const Wordle = ({ solution, generateNewSolution }) => {
     restartGame,
   } = useWordle(solution);
   const [showModal, setShowModal] = useState(false);
-  const [showTutorial, setShowTutorial] = useState(localStorage.getItem("leet_showTutorial") || false);
+  const [showTutorial, setShowTutorial] = useState(
+    localStorage.getItem("leet_showTutorial") === "true" || false
+  );
 
   const playAgain = () => {
-    // console.log("* Play Again function fired");
     generateNewSolution();
     setShowModal(false);
     restartGame();
-    // console.log("* Play Again function ended");
   };
 
   useEffect(() => {
@@ -51,7 +56,7 @@ const Wordle = ({ solution, generateNewSolution }) => {
       <Navigation history={gamesHistory} />
       <div className="game">
         <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} />
-        <AdvancedKeyboard usedKeys={usedKeys} handleKey={handleKeyUp} />
+        <Keyboard usedKeys={usedKeys} handleKey={() => handleKeyUp} />
         {gameFinished && showModal && (
           <ResultsModal
             closeModal={() => setShowModal(false)}
@@ -63,7 +68,12 @@ const Wordle = ({ solution, generateNewSolution }) => {
           />
         )}
       </div>
-      {showTutorial && <Tutorial closeTutorial={() => setShowTutorial(false)} />}
+      {showTutorial && (
+        <Tutorial
+          closeTutorial={() => setShowTutorial(false)}
+          showTutorial={showTutorial}
+        />
+      )}
     </div>
   );
 };

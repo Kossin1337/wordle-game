@@ -1,8 +1,14 @@
 import React from "react";
 import { Modal } from "../Modal";
+import { IGameHistory } from "../../../types/types";
 import "./Statistics.scss";
 
-export const Statistics = ({ closeModal, history }) => {
+interface IStatistics {
+  closeModal: () => void;
+  history: IGameHistory[];
+}
+
+export const Statistics = ({ closeModal, history }: IStatistics) => {
   const totalGames = history.length;
   const gamesData = {
     wins: 0,

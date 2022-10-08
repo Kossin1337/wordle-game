@@ -1,6 +1,10 @@
 import React from "react";
 
-export const PlayAgainButton = ({ playAgain }) => {
+interface IPlayAgainButton {
+  playAgain: () => void;
+}
+
+export const PlayAgainButton = ({ playAgain }: IPlayAgainButton) => {
   return (
     <button className="restart" onClick={() => playAgain()}>
       <span className="text">Play Again</span>

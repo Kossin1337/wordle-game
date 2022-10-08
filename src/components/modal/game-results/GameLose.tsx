@@ -1,7 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const GameLose = ({ solution }) => {
+interface IGameLose {
+  solution: string;
+}
+
+const GameLose = ({ solution }: IGameLose) => {
   return ReactDOM.createPortal(
     <div className="lose">
       <span className="title">YOU LOST</span>

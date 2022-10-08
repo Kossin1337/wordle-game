@@ -1,6 +1,11 @@
 import React from "react";
 
-const GameWin = ({ solution, turn }) => {
+interface IGameWin {
+  solution: string;
+  turn: number;
+}
+
+const GameWin = ({ solution, turn }: IGameWin) => {
   return (
     <div className="win">
       <span className="title">YOU WON</span>

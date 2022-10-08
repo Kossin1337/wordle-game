@@ -64,9 +64,7 @@ export const useWordle = (solution: string) => {
     /* working on keyboard colors */
     setUsedKeys((prevUsedKeys: IUsedKeys) => {
       let newKeys = { ...prevUsedKeys };
-      // console.log(newKeys);
 
-      // formattedGuess.forEach((l: { key: string; color: string }) => {
       formattedGuess.forEach((l: IFormatedGuess) => {
         // const currentLetter = l.key as undefined as IndexType;
         const currentColor = newKeys[l.key as keyof typeof newKeys];
@@ -164,14 +162,14 @@ export const useWordle = (solution: string) => {
     setIsCorrect(false);
     setGameFinished(false);
     // window.removeEventListener("keyup", handleKeyUp);
-    console.log("gameFinished: ", gameFinished);
-    console.log("Turns: ", turn);
-    console.log("Guesses Array (6): ", guesses);
-    console.log("Used keys", usedKeys);
-    console.log("History: ", history);
-    console.log("Games history:", gamesHistory);
-    console.log("*** reseting finished:");
-    console.log("** Restart Game Function Ended");
+    // console.log("gameFinished: ", gameFinished);
+    // console.log("Turns: ", turn);
+    // console.log("Guesses Array (6): ", guesses);
+    // console.log("Used keys", usedKeys);
+    // console.log("History: ", history);
+    // console.log("Games history:", gamesHistory);
+    // console.log("*** reseting finished:");
+    // console.log("** Restart Game Function Ended");
   };
 
   return {

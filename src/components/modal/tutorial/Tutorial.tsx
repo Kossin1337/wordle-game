@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import "./Tutorial.scss";
 import { Modal } from "../Modal";
 
-export const Tutorial = ({ showTutorial, closeTutorial }) => {
-  const [checkbox, setCheckbox] = useState(true);
+interface ITutorial {
+  closeTutorial: () => void;
+  showTutorial: boolean;
+}
+
+export const Tutorial = ({ showTutorial, closeTutorial }: ITutorial) => {
+  const [checkbox, setCheckbox] = useState<boolean>(true);
 
   const hideTutorial = () => {
     /* save it to local storage */
-    if (checkbox) localStorage.setItem("leet_showTutorial", false);
+    if (checkbox) localStorage.setItem("leet_showTutorial", "false"); // figure out a way to change "false" to false (from string to boolean)
     console.log(
       "Tutorial > hideTutorial > localStorage(leet_showTutorial):",
       localStorage.getItem("leet_showTutorial")
@@ -48,7 +53,13 @@ export const Tutorial = ({ showTutorial, closeTutorial }) => {
           <span className="text">Hide tutorial</span>
         </button>
         <div className="hideTutorial">
-          <input type="checkbox" id="checkbox" name="tutorial-checkbox" value={checkbox} onChange={handleCheckbox} />
+          <input
+            type="checkbox"
+            id="checkbox"
+            name="tutorial-checkbox"
+            value={checkbox ? "si" : "no"}
+            onChange={handleCheckbox}
+          />
           <label htmlFor="checkbox">I get it. Disable the hints</label>
         </div>
       </div>

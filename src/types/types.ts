@@ -46,6 +46,11 @@ export interface IFormatedGuess {
   // color: "green" | "yellow" | "grey";
 }
 
+export interface IGuess {
+  key: string;
+  color: string;
+}
+
 export interface IFormattedGuesses {
   formattedGuess: IFormatedGuess[];
 }

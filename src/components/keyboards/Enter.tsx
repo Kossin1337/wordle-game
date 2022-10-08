@@ -1,6 +1,10 @@
 import React from "react";
 
-const Enter = ({ handleKey }) => {
+interface IEnter {
+  handleKey: ({ key }: KeyboardEvent | { key: string }) => void;
+}
+
+const Enter = ({ handleKey }: IEnter) => {
   return (
     <div
       className="key action enter"

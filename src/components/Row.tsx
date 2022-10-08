@@ -1,10 +1,18 @@
 import React from "react";
+import { IFormatedGuess } from "../types/types";
 
-const Row = ({ guess, currentGuess }) => {
+interface IRow {
+  guess?: IFormatedGuess[];
+  currentGuess?: string;
+}
+
+const Row = ({ guess, currentGuess }: IRow) => {
+  console.log("Row guess:", guess);
+
   if (guess) {
     return (
       <div className="row past">
-        {guess.map((letter, index) => {
+        {guess.map((letter: { key: string; color: string }, index: number) => {
           return (
             <div className={`square ${letter.color}`} key={index}>
               {letter.key}
@@ -21,7 +29,7 @@ const Row = ({ guess, currentGuess }) => {
 
     return (
       <div className="row current">
-        {letters.map((letter, index) => {
+        {letters.map((letter: string, index: number) => {
           return (
             <div className="square filled" key={`${index} filled`}>
               {letter}

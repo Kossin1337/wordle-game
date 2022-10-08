@@ -2,7 +2,11 @@ import React from "react";
 import { Modal } from "../Modal";
 import "./Settings.scss";
 
-export const Settings = ({ closeModal }) => {
+interface ISettings {
+  closeModal: () => void;
+}
+
+export const Settings = ({ closeModal }: ISettings) => {
   return (
     <Modal closeModal={closeModal}>
       <div className="settings content">

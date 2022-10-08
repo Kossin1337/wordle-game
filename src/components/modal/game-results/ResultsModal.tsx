@@ -1,9 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import GameWin from "./GameWin";
 import GameLose from "./GameLose";
 import { PlayAgainButton } from "./PlayAgainButton";
 import "./ResultsModal.scss";
 import ReactDOM from "react-dom";
+
+interface IResultsModal {
+  closeModal: () => void;
+  isCorrect: boolean;
+  turn: number;
+  solution: string;
+  playAgain: () => void;
+  gameFinished: boolean;
+}
 
 const ResultsModal = ({
   closeModal,
@@ -12,10 +21,10 @@ const ResultsModal = ({
   solution,
   playAgain,
   gameFinished,
-}) => {
+}: IResultsModal) => {
   if (!gameFinished) return null;
   if (!isCorrect) return null;
-  
+
   return ReactDOM.createPortal(
     <div className="wrapper" onClick={closeModal}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -28,7 +37,7 @@ const ResultsModal = ({
         <PlayAgainButton playAgain={playAgain} />
       </div>
     </div>,
-    document.getElementById("portal")
+    document.getElementById("portal") as Element
   );
 };
 

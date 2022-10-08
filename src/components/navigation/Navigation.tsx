@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { Settings } from "../modal/settings/Settings";
 import { Statistics } from "../modal/statistics/Statistics";
+import { IGameHistory } from "../../types/types";
 
-const Navigation = ({ history }) => {
+interface INavigation {
+  history: IGameHistory[];
+}
+
+const Navigation = ({ history }: INavigation) => {
   const [openSettings, setOpenSettings] = useState(false);
   const [openStats, setOpenStats] = useState(false);
 

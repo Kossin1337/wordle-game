@@ -1,6 +1,10 @@
 import React from "react";
 
-const Backspace = ({ handleKey }) => {
+interface IBackspace {
+  handleKey: ({ key }: KeyboardEvent | { key: string }) => void;
+}
+
+const Backspace = ({ handleKey }: IBackspace) => {
   return (
     <div
       className="key action backspace"
