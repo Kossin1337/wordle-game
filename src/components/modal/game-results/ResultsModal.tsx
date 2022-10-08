@@ -23,7 +23,6 @@ const ResultsModal = ({
   gameFinished,
 }: IResultsModal) => {
   if (!gameFinished) return null;
-  if (!isCorrect) return null;
 
   const portal = document?.getElementById("portal") as HTMLElement;
 
