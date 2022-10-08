@@ -25,6 +25,8 @@ const ResultsModal = ({
   if (!gameFinished) return null;
   if (!isCorrect) return null;
 
+  const portal = document?.getElementById("portal") as HTMLElement;
+
   return ReactDOM.createPortal(
     <div className="wrapper" onClick={closeModal}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -37,7 +39,7 @@ const ResultsModal = ({
         <PlayAgainButton playAgain={playAgain} />
       </div>
     </div>,
-    document.getElementById("portal") as Element
+    portal
   );
 };
 

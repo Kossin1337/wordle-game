@@ -6,6 +6,8 @@ interface IGameLose {
 }
 
 const GameLose = ({ solution }: IGameLose) => {
+  const portal = document?.getElementById("portal") as HTMLElement;
+
   return ReactDOM.createPortal(
     <div className="lose">
       <span className="title">YOU LOST</span>
@@ -14,7 +16,7 @@ const GameLose = ({ solution }: IGameLose) => {
         <span className="solution">{solution}</span>
       </div>
     </div>,
-    document.getElementById("portal")
+    portal
   );
 };
 
