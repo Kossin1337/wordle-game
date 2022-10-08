@@ -98,22 +98,20 @@
   .hideTutorial {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    transition: 0.1s ease-in;
 
-    #checkbox {
+    span {
       cursor: pointer;
-      width: 20px;
-      height: 20px;
-      background-color: #ccc;
-      color: yellow;
-      outline: none;
-      border: none;
-    }
-
-    label {
-      color: #ccc;
       font-size: 0.8rem;
       text-transform: uppercase;
+      color: #ddd;
+    }
+
+    &:hover {
+      span {
+        color: red;
+      }
     }
   }
 }

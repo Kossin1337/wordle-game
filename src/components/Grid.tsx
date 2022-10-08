@@ -9,8 +9,6 @@ interface IGrid {
 }
 
 const Grid = ({ guesses, currentGuess, turn }: IGrid) => {
-  console.log("Grid guesses:", guesses);
-
   return (
     <div className="grid">
       {guesses.map((guess: IFormatedGuess[], index: number) => {

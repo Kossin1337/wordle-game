@@ -1,14 +1,31 @@
+export interface IGameContext {
+  totalGames: number;
+  wins: number;
+  gamesHistory: IGameHistory[];
+  userInfo: {
+    darkTheme: boolean;
+    showTutorial: boolean;
+  };
+}
+
 export interface IGameHistory {
   gameID: number;
   time: number;
   win: boolean;
   turns: number;
 }
+export interface IGuess {
+  key: string;
+  color: string;
+}
 
-export interface IGameInfo {
-  totalGames: number;
-  wins: number;
-  gamesHistory: IGameHistory[];
+export interface IFormatedGuess {
+  key: string;
+  color: string;
+}
+
+export interface IFormattedGuesses {
+  formattedGuess: IFormatedGuess[];
 }
 
 export interface IUsedKeys {
@@ -38,19 +55,4 @@ export interface IUsedKeys {
   x?: string;
   y?: string;
   z?: string;
-}
-
-export interface IFormatedGuess {
-  key: string;
-  color: string;
-  // color: "green" | "yellow" | "grey";
-}
-
-export interface IGuess {
-  key: string;
-  color: string;
-}
-
-export interface IFormattedGuesses {
-  formattedGuess: IFormatedGuess[];
 }

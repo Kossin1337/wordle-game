@@ -1,29 +1,28 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, createContext, Context } from "react";
 import { words } from "./data/words.js";
 import Wordle from "./components/Wordle";
+import { IGameContext } from "./types/types.js";
 import "./App.scss";
 
-// interface GameInfo {
-//   totalGames: number;
-//   wins: number;
-// }
+const defaultGameContext = {
+  totalGames: 0,
+  wins: 0,
+  gamesHistory: [],
+  userInfo: {
+    darkTheme: true,
+    showTutorial: true,
+  },
+};
 
-// const gameContextMock = {
-//   totalGames: 100,
-//   wins: 60,
-//   gamesHistory: [{ id: 1, time: 1665067467592, win: false, turns: [] }],
-// };
-
-// const gameInfoContext = createContext(gameContextMock);
+export const GameContext = createContext<IGameContext | null>(null);
 
 const App = () => {
+  const [gameInfo, setGameInfo] = useState<IGameContext>(defaultGameContext);
   const [solution, setSolution] = useState<string | null>(null);
 
   const generateWord = () => {
     const newWordsIndex = Math.floor(Math.random() * words.length);
     const newWord = words[newWordsIndex];
-
-    console.log(`newWord: `, newWord);
     return newWord;
   };
 
@@ -31,21 +30,51 @@ const App = () => {
     generateNewSolution();
   }, [setSolution]);
 
-  console.log(solution);
+  /* load wordle context data from local storage */
+  useEffect(() => {
+    // check if we have the data
+    // if we have if - setGameInfo() with that data
+    // if we don't have it - create leet_gamesdata local storage
+    // and load it with the defaultGameContext value
+
+    const gameInfoData = localStorage.getItem("leet_gamesdata");
+
+    if (gameInfoData) {
+      const data = JSON.parse(gameInfoData);
+      console.log("Local storage (leet_gamesdata): ", data);
+      setGameInfo(data);
+    } else {
+      localStorage.setItem(
+        "leet_gamesdata",
+        JSON.stringify(defaultGameContext)
+      );
+      setGameInfo(defaultGameContext);
+    }
+  }, []);
+
+  /* save data to localStorage everytime gameInfo changes */
+  useEffect(() => {
+    localStorage.setItem("leet_gamesdata", JSON.stringify(gameInfo));
+  }, [gameInfo]);
+
+  console.log(`Solution: `, solution);
 
   const generateNewSolution = () => {
-    console.log("** generating new solution fired");
     const newSolution = generateWord();
     setSolution(newSolution);
-    console.log("** generating new solution ended");
   };
 
   return (
-    <div className="application">
-      {solution && (
-        <Wordle solution={solution} generateNewSolution={generateNewSolution} />
-      )}
-    </div>
+    <GameContext.Provider value={gameInfo}>
+      <div className="application">
+        {solution && (
+          <Wordle
+            solution={solution}
+            generateNewSolution={generateNewSolution}
+          />
+        )}
+      </div>
+    </GameContext.Provider>
   );
 };
 

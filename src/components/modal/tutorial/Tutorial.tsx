@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import "./Tutorial.scss";
+import React, { useState, useContext } from "react";
 import { Modal } from "../Modal";
+import { GameContext } from "../../../App";
+import "./Tutorial.scss";
 
 interface ITutorial {
   closeTutorial: () => void;
@@ -8,24 +9,29 @@ interface ITutorial {
 }
 
 export const Tutorial = ({ showTutorial, closeTutorial }: ITutorial) => {
-  const [checkbox, setCheckbox] = useState<boolean>(true);
+  const gameInfo = useContext(GameContext);
 
   const hideTutorial = () => {
-    /* save it to local storage */
-    if (checkbox) localStorage.setItem("leet_showTutorial", "false"); // figure out a way to change "false" to false (from string to boolean)
-    console.log(
-      "Tutorial > hideTutorial > localStorage(leet_showTutorial):",
-      localStorage.getItem("leet_showTutorial")
-    );
+    // /* save it to local storage */
+    if(gameInfo) {
+      
+    } 
+    // console.log(`Tutorial info: `, gameInfo);
+    // if (gameInfo) {
+    //   gameInfo.wins = 100;
+    // }
+    // console.log(`Tutorial info: `, gameInfo);
+
+    // localStorage.setItem("leet_showTutorial", "false"); // figure out a way to change "false" to false (from string to boolean)
+    // console.log(
+    //   "Tutorial > hideTutorial > localStorage(leet_showTutorial):",
+    //   localStorage.getItem("leet_showTutorial")
+    // );
 
     closeTutorial();
   };
 
   console.log("Current state of tutorial: ", showTutorial);
-
-  const handleCheckbox = () => {
-    setCheckbox(!checkbox);
-  };
 
   return (
     <Modal closeModal={closeTutorial}>
@@ -49,18 +55,11 @@ export const Tutorial = ({ showTutorial, closeTutorial }: ITutorial) => {
           </div>
           <span className="info">EXACLY!</span>
         </div>
-        <button className="close" onClick={hideTutorial}>
+        <button className="close" onClick={() => closeTutorial()}>
           <span className="text">Hide tutorial</span>
         </button>
-        <div className="hideTutorial">
-          <input
-            type="checkbox"
-            id="checkbox"
-            name="tutorial-checkbox"
-            value={checkbox ? "si" : "no"}
-            onChange={handleCheckbox}
-          />
-          <label htmlFor="checkbox">I get it. Disable the hints</label>
+        <div className="hideTutorial" onClick={hideTutorial}>
+          <span className="text">I get it. Disable the hints</span>
         </div>
       </div>
     </Modal>

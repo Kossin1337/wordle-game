@@ -87,7 +87,7 @@ export const useWordle = (solution: string) => {
         }
       });
 
-      console.log("Formatted guess:", formattedGuess);
+      // console.log("Formatted guess:", formattedGuess);
 
       return newKeys;
     });
@@ -100,19 +100,19 @@ export const useWordle = (solution: string) => {
     if (key === "Enter") {
       /* Only add guess if turn is less than 5 */
       if (turn > 5) {
-        console.log("You used all your guesses");
+        // console.log("You used all your guesses");
         return;
       }
 
       /* Do not allow duplicate words */
       if (history.includes(currentGuess)) {
-        console.log("You already submitted this word");
+        // console.log("You already submitted this word");
         return;
       }
 
       /* Word is 5 characters long */
       if (currentGuess.length !== 5) {
-        console.log(`Current guess isn't 5 characters long`);
+        // console.log(`Current guess isn't 5 characters long`);
         return;
       }
 
@@ -149,10 +149,10 @@ export const useWordle = (solution: string) => {
 
   /* Restart Game Logic */
   const restartGame = () => {
-    console.log("** Restart Game Function Fired");
+    // console.log("** Restart Game Function Fired");
     saveGameStats();
 
-    console.log("*** reseting parameters:");
+    // console.log("*** reseting parameters:");
     /* Reseting all parameters for next game */
     setTurn(0);
     setCurrentGuess("");

@@ -7,8 +7,6 @@ interface IRow {
 }
 
 const Row = ({ guess, currentGuess }: IRow) => {
-  console.log("Row guess:", guess);
-
   if (guess) {
     return (
       <div className="row past">

@@ -27,9 +27,10 @@ const Wordle = ({ solution, generateNewSolution }: IWordle) => {
     restartGame,
   } = useWordle(solution);
   const [showModal, setShowModal] = useState(false);
-  const [showTutorial, setShowTutorial] = useState(
-    localStorage.getItem("leet_showTutorial") === "true" || false
-  );
+  const [showTutorial, setShowTutorial] = useState(true);
+  // const [showTutorial, setShowTutorial] = useState(
+  //   localStorage.getItem("leet_showTutorial") === "true" || false
+  // );
 
   const playAgain = () => {
     generateNewSolution();
