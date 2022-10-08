@@ -1,7 +1,7 @@
-import React, { useState, useEffect, createContext, Context } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import { words } from "./data/words.js";
 import Wordle from "./components/Wordle";
-import { IGameContext } from "./types/types.js";
+import { IGameInfo } from "./types/types.js";
 import "./App.scss";
 
 const defaultGameContext = {
@@ -14,11 +14,17 @@ const defaultGameContext = {
   },
 };
 
-export const GameContext = createContext<IGameContext | null>(null);
+interface IContextInterface {
+  gameInfo?: IGameInfo;
+  setGameInfo?: React.Dispatch<React.SetStateAction<IGameInfo>>;
+}
+
+export const GameContext = createContext<IContextInterface | null>(null);
 
 const App = () => {
-  const [gameInfo, setGameInfo] = useState<IGameContext>(defaultGameContext);
+  const [gameInfo, setGameInfo] = useState<IGameInfo>(defaultGameContext);
   const [solution, setSolution] = useState<string | null>(null);
+  const gameInfoContextValue = { gameInfo, setGameInfo };
 
   const generateWord = () => {
     const newWordsIndex = Math.floor(Math.random() * words.length);
@@ -26,17 +32,13 @@ const App = () => {
     return newWord;
   };
 
+  /* GENERATE SOLUTION */
   useEffect(() => {
     generateNewSolution();
   }, [setSolution]);
 
-  /* load wordle context data from local storage */
+  /* LOAD GAME CONTEXT FROM LOCAL STORAGE */
   useEffect(() => {
-    // check if we have the data
-    // if we have if - setGameInfo() with that data
-    // if we don't have it - create leet_gamesdata local storage
-    // and load it with the defaultGameContext value
-
     const gameInfoData = localStorage.getItem("leet_gamesdata");
 
     if (gameInfoData) {
@@ -52,10 +54,11 @@ const App = () => {
     }
   }, []);
 
-  /* save data to localStorage everytime gameInfo changes */
+  /* SAVE DATA TO LOCAL STORAGE */
   useEffect(() => {
     localStorage.setItem("leet_gamesdata", JSON.stringify(gameInfo));
-  }, [gameInfo]);
+    console.log("Game Info:", gameInfo);
+  }, [setGameInfo]);
 
   console.log(`Solution: `, solution);
 
@@ -65,7 +68,7 @@ const App = () => {
   };
 
   return (
-    <GameContext.Provider value={gameInfo}>
+    <GameContext.Provider value={gameInfoContextValue}>
       <div className="application">
         {solution && (
           <Wordle

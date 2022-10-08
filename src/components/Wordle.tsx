@@ -28,9 +28,6 @@ const Wordle = ({ solution, generateNewSolution }: IWordle) => {
   } = useWordle(solution);
   const [showModal, setShowModal] = useState(false);
   const [showTutorial, setShowTutorial] = useState(true);
-  // const [showTutorial, setShowTutorial] = useState(
-  //   localStorage.getItem("leet_showTutorial") === "true" || false
-  // );
 
   const playAgain = () => {
     generateNewSolution();
@@ -51,6 +48,8 @@ const Wordle = ({ solution, generateNewSolution }: IWordle) => {
 
     return () => window.removeEventListener("keyup", handleKeyUp);
   }, [handleKeyUp, isCorrect, setGameFinished, turn]);
+
+  useEffect(() => {}, [showTutorial]);
 
   return (
     <div className="wordle">

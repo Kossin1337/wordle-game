@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Modal } from "../Modal";
 import { GameContext } from "../../../App";
 import "./Tutorial.scss";
@@ -9,29 +9,21 @@ interface ITutorial {
 }
 
 export const Tutorial = ({ showTutorial, closeTutorial }: ITutorial) => {
-  const gameInfo = useContext(GameContext);
+  const game = useContext(GameContext);
 
   const hideTutorial = () => {
-    // /* save it to local storage */
-    if(gameInfo) {
-      
-    } 
-    // console.log(`Tutorial info: `, gameInfo);
-    // if (gameInfo) {
-    //   gameInfo.wins = 100;
-    // }
-    // console.log(`Tutorial info: `, gameInfo);
+    if (!game?.setGameInfo) return;
 
-    // localStorage.setItem("leet_showTutorial", "false"); // figure out a way to change "false" to false (from string to boolean)
-    // console.log(
-    //   "Tutorial > hideTutorial > localStorage(leet_showTutorial):",
-    //   localStorage.getItem("leet_showTutorial")
-    // );
+    game.setGameInfo((prevState) => {
+      const newState = { ...prevState };
+      newState.userInfo.showTutorial = false;
+      return newState;
+    });
 
     closeTutorial();
   };
 
-  console.log("Current state of tutorial: ", showTutorial);
+  if (!game?.gameInfo?.userInfo.showTutorial) return <></>;
 
   return (
     <Modal closeModal={closeTutorial}>

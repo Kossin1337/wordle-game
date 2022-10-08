@@ -1,4 +1,4 @@
-export interface IGameContext {
+export interface IGameInfo {
   totalGames: number;
   wins: number;
   gamesHistory: IGameHistory[];
