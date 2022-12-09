@@ -6,7 +6,7 @@ interface IPlayAgainButton {
 
 export const PlayAgainButton = ({ playAgain }: IPlayAgainButton) => {
   return (
-    <button className="restart" onClick={() => playAgain()}>
+    <button className="restart" onClick={playAgain}>
       <span className="text">Play Again</span>
     </button>
   );

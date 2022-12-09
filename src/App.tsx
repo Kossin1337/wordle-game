@@ -15,8 +15,8 @@ const defaultGameContext = {
 };
 
 interface IContextInterface {
-  gameInfo?: IGameInfo;
-  setGameInfo?: React.Dispatch<React.SetStateAction<IGameInfo>>;
+  gameInfo: IGameInfo;
+  setGameInfo: React.Dispatch<React.SetStateAction<IGameInfo>>;
 }
 
 export const GameContext = createContext<IContextInterface | null>(null);
@@ -36,6 +36,8 @@ const App = () => {
   useEffect(() => {
     generateNewSolution();
   }, [setSolution]);
+
+  const fetchGameInfoData = async () => {};
 
   /* LOAD GAME CONTEXT FROM LOCAL STORAGE */
   useEffect(() => {
@@ -58,9 +60,10 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("leet_gamesdata", JSON.stringify(gameInfo));
     console.log("Game Info:", gameInfo);
-  }, [setGameInfo]);
+  }, [gameInfo, setGameInfo]);
 
   console.log(`Solution: `, solution);
+  console.log(`Game Info: `, gameInfo);
 
   const generateNewSolution = () => {
     const newSolution = generateWord();

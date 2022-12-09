@@ -9,10 +9,10 @@ export interface IGameInfo {
 }
 
 export interface IGameHistory {
-  gameID: number;
   time: number;
   win: boolean;
-  turns: number;
+  finishedOnTurn: number;
+  turns: IGuess[][];
 }
 export interface IGuess {
   key: string;

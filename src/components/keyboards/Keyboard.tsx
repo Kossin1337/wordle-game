@@ -15,9 +15,14 @@ interface IKeyboard {
 }
 
 const Keyboard = ({ usedKeys, handleKey }: IKeyboard) => {
-  const handleKeyPress = (target: HTMLDivElement) => {
+  const handleKeyPress = (event: any) => {
+    // const isDisabled = event.target.dataset.disabled;
+    // if (event.target instanceof Element) {
+    //   console.log("handleKeyPress (e.target.key)", event.target);
+    // }
+
     handleKey({
-      key: target.innerText,
+      key: event.target.innerText,
     });
   };
 
@@ -36,10 +41,9 @@ const Keyboard = ({ usedKeys, handleKey }: IKeyboard) => {
               return (
                 <div
                   className={`key ${color}`}
+                  data-disabled={color === "grey" ? true : false}
                   key={key}
-                  onClick={({ target }) =>
-                    handleKeyPress(target as HTMLDivElement)
-                  }
+                  onClick={(e) => handleKeyPress(e)}
                 >
                   {key}
                 </div>

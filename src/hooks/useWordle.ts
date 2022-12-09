@@ -96,7 +96,9 @@ export const useWordle = (solution: string) => {
   };
 
   /* Handle key-up events (ENTER - Add new guess) */
-  const handleKeyUp = ({ key }: KeyboardEvent) => {
+  const handleKeyUp = ({ key }: any) => {
+    // console.log("handleKeyUp, key:", key);
+
     if (key === "Enter") {
       /* Only add guess if turn is less than 5 */
       if (turn > 5) {
@@ -135,10 +137,10 @@ export const useWordle = (solution: string) => {
   /* Save Game */
   const saveGameStats = () => {
     const gameHistory = {
-      gameID: history.length,
       time: Date.now(),
       win: isCorrect,
-      turns: turn,
+      finishedOnTurn: turn,
+      turns: guesses,
     };
 
     setGamesHistory((prevHistory) => [gameHistory, ...prevHistory]);
@@ -149,25 +151,22 @@ export const useWordle = (solution: string) => {
 
   /* Restart Game Logic */
   const restartGame = () => {
-    // console.log("** Restart Game Function Fired");
     saveGameStats();
 
-    // console.log("*** reseting parameters:");
-    /* Reseting all parameters for next game */
     setTurn(0);
     setCurrentGuess("");
     setHistory([]);
     setGuesses([...Array(6)]);
     setUsedKeys({});
-    setIsCorrect(false);
     setGameFinished(false);
+    setIsCorrect(false);
     // window.removeEventListener("keyup", handleKeyUp);
     // console.log("gameFinished: ", gameFinished);
     // console.log("Turns: ", turn);
-    // console.log("Guesses Array (6): ", guesses);
-    // console.log("Used keys", usedKeys);
-    // console.log("History: ", history);
-    // console.log("Games history:", gamesHistory);
+    console.log("Guesses Array (6): ", guesses);
+    console.log("Used keys", usedKeys);
+    console.log("History: ", history);
+    console.log("Games history:", gamesHistory);
     // console.log("*** reseting finished:");
     // console.log("** Restart Game Function Ended");
   };

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Modal } from "../Modal";
 import { IGameHistory } from "../../../types/types";
+import { GameContext } from "../../../App";
 import "./Statistics.scss";
 
 interface IStatistics {
@@ -9,31 +10,63 @@ interface IStatistics {
 }
 
 export const Statistics = ({ closeModal, history }: IStatistics) => {
-  const totalGames = history.length;
-  const gamesData = {
-    wins: 0,
-    loses: 0,
-    turns: {},
-  };
-  history?.map((game) => {
-    game.win ? gamesData.wins++ : gamesData.loses++;
-  });
+  const game = useContext(GameContext);
 
-  const data = localStorage.getItem("gameHistory");
-  // const data = localStorage.gameHistory;
-  console.log("data: ", data);
-  console.log("localStorage", localStorage);
+  if (!game) return null;
+  const { totalGames, wins, gamesHistory } = game?.gameInfo;
+
+  const totalTurnsMade = gamesHistory.reduce(
+    (prev, current) => prev + current?.finishedOnTurn,
+    0
+  );
+
+  const resetStatistics = () => {
+    game?.setGameInfo((prevGameInfo) => {
+      const newGameInfo = prevGameInfo;
+      newGameInfo.totalGames = 0;
+      newGameInfo.wins = 0;
+      newGameInfo.gamesHistory = [];
+
+      return newGameInfo;
+    });
+
+    closeModal();
+  };
 
   return (
     <Modal closeModal={closeModal}>
       <div className="stats content">
         <span className="title">Statistics</span>
-        <span className="info">Development in progress</span>
-        <div className="history">{JSON.stringify(history)}</div>
-        <span>WINS {gamesData.wins}</span>
-        <span>LOSES {gamesData.loses}</span>
-        <span>WIN RATE {(gamesData.wins / history.length) * 100}%</span>
-        {/* <span>AVG TURNS PER GAME {gamesData}</span> */}
+        <section className="section">
+          <div className="win-rate full-box box">
+            <span className="stats-title">WIN RATE</span>
+            {wins ? (
+              <span className="main-text">{(wins / totalGames) * 100}% </span>
+            ) : (
+              <span className="main-text">-</span>
+            )}
+          </div>
+          <div className="win small-box box">
+            <span className="stats-title">WINS</span>
+            <span className="main-text">{wins}</span>
+          </div>
+          <div className="lose small-box box">
+            <span className="stats-title">LOSES </span>
+            <span className="main-text"> {totalGames - wins}</span>
+          </div>
+          <div className="win-rate full-box box">
+            <span className="stats-title">AVG TURNS</span>
+            {wins ? (
+              <span className="main-text">{totalTurnsMade / totalGames} </span>
+            ) : (
+              <span className="main-text">-</span>
+            )}
+          </div>
+        </section>
+        <button className="clear-btn" onClick={resetStatistics}>
+          Clear my stats
+        </button>
+        {/* <span className="info">Development in progress</span> */}
       </div>
     </Modal>
   );

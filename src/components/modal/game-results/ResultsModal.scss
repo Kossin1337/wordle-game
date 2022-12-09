@@ -7,7 +7,7 @@
   width: 100vw;
   height: 100vh;
   backdrop-filter: blur(3px);
-  background: rgba(35, 35, 35, 0.5);
+  // background: rgba(35, 35, 35, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +16,6 @@
     position: relative;
     min-width: 320px;
     display: flex;
-    height: 320px;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
@@ -67,7 +66,8 @@
 
       .title {
         font-size: 2rem;
-        font-weight: 300;
+        font-weight: 400;
+        color: rgba(50, 205, 50, 0.5);
       }
 
       .solution {
@@ -96,13 +96,19 @@
 
     .restart {
       width: 100%;
+      margin-top: 2.75rem;
       cursor: pointer;
       padding: 0.5rem 0;
       border: none;
       outline: none;
       border-radius: 20px;
-      background-color: rgba(125, 125, 125, 0.25);
+      background-color: rgba(125, 125, 125, 0.15);
       transition: all 0.15s ease-in;
+
+      .text {
+        font-family: "Orbitron" !important;
+        font-size: 1rem;
+      }
 
       &:hover {
         background-color: #252525;

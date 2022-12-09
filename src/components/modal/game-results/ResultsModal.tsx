@@ -29,10 +29,10 @@ const ResultsModal = ({
   return ReactDOM.createPortal(
     <div className="wrapper" onClick={closeModal}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        {isCorrect ? (
+        {gameFinished && isCorrect ? (
           <GameWin turn={turn} solution={solution} />
         ) : (
-          <GameLose solution={solution} />
+          <GameLose isCorrect={isCorrect} solution={solution} />
         )}
 
         <PlayAgainButton playAgain={playAgain} />

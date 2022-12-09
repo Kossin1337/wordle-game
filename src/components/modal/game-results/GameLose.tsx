@@ -2,9 +2,12 @@ import React from "react";
 
 interface IGameLose {
   solution: string;
+  isCorrect: boolean;
 }
 
-const GameLose = ({ solution }: IGameLose) => {
+const GameLose = ({ solution, isCorrect }: IGameLose) => {
+  // if (!isCorrect) return null;
+
   return (
     <div className="lose">
       <span className="title">YOU LOST</span>
